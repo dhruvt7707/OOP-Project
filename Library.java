@@ -54,7 +54,27 @@ public class Library {
         final int quota = 200;
         Book[] book_bank_books;
         int number_of_books_allocated;
-        
+        Person[] Borrower;
+        Book[] borrowedBooks;
+        final int max_number_of_borrowers = 20;
+        BookBank(){
+            this.number_of_books_allocated = 0;
+            this.book_bank_books = new Book[this.quota];
+            this.borrowedBooks = new Book[this.quota];
+            this.Borrower = new Person[this.max_number_of_borrowers];
+        }
+        public void giveBook(Person student,  Book preference){
+            int index = -1;
+            for(int i=0; i<this.book_bank_books.length; i++){
+                if(this.book_bank_books[i] == null)
+                break;
+                if(this.book_bank_books[i].getTitle().equals(preference.getTitle())){
+                    index = i;
+                    break;
+                }
+
+            }
+        }
     }
     public void addBook(Book book) {
         if (this.numberOfBooks < MAX_NUMBER_OF_BOOKS)
