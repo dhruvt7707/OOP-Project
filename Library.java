@@ -52,6 +52,7 @@ public class Library {
     }
     class BookBank{
         final int quota = 200;
+        int number_of_book_bank_books;
         Book[] book_bank_books;
         int number_of_books_allocated;
         Person[] Borrower;
@@ -62,6 +63,13 @@ public class Library {
             this.book_bank_books = new Book[this.quota];
             this.borrowedBooks = new Book[this.quota];
             this.Borrower = new Person[this.max_number_of_borrowers];
+            this.number_of_book_bank_books = 0;
+        }
+        public void setBookBankBooks(Book ... books){
+            for(int i=0; i<books.length; i++){
+                this.book_bank_books[i] = books[i];
+            }
+            this.number_of_book_bank_books = books.length;
         }
         public void giveBook(Person student,  Book preference){
             int index = -1;
@@ -72,8 +80,17 @@ public class Library {
                     index = i;
                     break;
                 }
-
             }
+            if(index == -1){
+                    System.out.println("Sorry Book not available");
+                    return;
+            }
+            for(int i = index; i<this.number_of_book_bank_books-1; i++){
+                this.book_bank_books[i] = this.book_bank_books[i+1];
+            }
+            this.book_bank_books[this.number_of_book_bank_books-1] = null;
+            this.borrowedBooks[this.number_of_books_allocated++] = preference;
+            System.out.println("Book successfully allocated");
         }
     }
     public void addBook(Book book) {
