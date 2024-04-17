@@ -50,7 +50,12 @@ public class Library {
         this.numberOfMechanicalEngineeringBooks = 0;
         this.numberOfelectricalengineeringBooks = 0;
     }
-    
+    class BookBank{
+        final int quota = 200;
+        Book[] book_bank_books;
+        int number_of_books_allocated;
+        
+    }
     public void addBook(Book book) {
         if (this.numberOfBooks < MAX_NUMBER_OF_BOOKS)
             this.books[this.numberOfBooks++] = book;
