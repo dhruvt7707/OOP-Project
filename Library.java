@@ -92,6 +92,27 @@ public class Library {
             this.borrowedBooks[this.number_of_books_allocated++] = preference;
             System.out.println("Book successfully allocated");
         }
+        public void returnBook(Person student, Book book){
+            boolean found = false;
+            int i;
+            int index =0;
+            for(i=0;i<this.borrowedBooks.length;i++){
+                if(this.borrowedBooks[i]==null)
+                break;
+                if(this.borrowedBooks[i].getTitle().equals(book.getTitle())){
+                    found=true;
+                    index=i;
+                    break;
+                }
+            }
+                if(found){
+                    book_bank_books[number_of_book_bank_books++]=borrowedBooks[index];
+                    while(index<this.number_of_books_allocated){
+                        borrowedBooks[index]=borrowedBooks[++index];
+                    }
+                    number_of_books_allocated--;
+                }
+        }
     }
     public void addBook(Book book) {
         if (this.numberOfBooks < MAX_NUMBER_OF_BOOKS)
