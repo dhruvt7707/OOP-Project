@@ -50,7 +50,28 @@ public class Library {
         this.numberOfMechanicalEngineeringBooks = 0;
         this.numberOfelectricalengineeringBooks = 0;
     }
-    class BookBank{
+
+    public ChemicalEngineeringBook[] getChemicalEngineeringBooks() {
+        return chemicalEngineeringBooks;
+    }
+
+    public ElectricalEngineeringBook[] getElectricalEngineeringBooks() {
+        return electricalEngineeringBooks;
+    }
+
+    public MechanicalEngineeringBook[] getMechanicalEngineeringBooks() {
+        return mechanicalEngineeringBooks;
+    }
+
+    public ComputerScienceBook[] getComputerScienceBooks() {
+        return this.computerScienceBooks;
+    }
+
+    public FictionBook[] getFictionBooks() {
+        return this.fictionBooks;
+    }
+
+    class BookBank {
         final int quota = 200;
         int number_of_book_bank_books;
         Book[] book_bank_books;
@@ -58,62 +79,67 @@ public class Library {
         Person[] Borrower;
         Book[] borrowedBooks;
         final int max_number_of_borrowers = 20;
-        BookBank(){
+
+        BookBank() {
             this.number_of_books_allocated = 0;
             this.book_bank_books = new Book[this.quota];
             this.borrowedBooks = new Book[this.quota];
             this.Borrower = new Person[this.max_number_of_borrowers];
             this.number_of_book_bank_books = 0;
         }
-        public void setBookBankBooks(Book ... books){
-            for(int i=0; i<books.length; i++){
+
+        public void setBookBankBooks(Book... books) {
+            for (int i = 0; i < books.length; i++) {
                 this.book_bank_books[i] = books[i];
             }
             this.number_of_book_bank_books = books.length;
         }
-        public void giveBook(Person student,  Book preference){
+
+        public void giveBook(Person student, Book preference) {
             int index = -1;
-            for(int i=0; i<this.book_bank_books.length; i++){
-                if(this.book_bank_books[i] == null)
-                break;
-                if(this.book_bank_books[i].getTitle().equals(preference.getTitle())){
+            for (int i = 0; i < this.book_bank_books.length; i++) {
+                if (this.book_bank_books[i] == null)
+                    break;
+                if (this.book_bank_books[i].getTitle().equals(preference.getTitle())) {
                     index = i;
                     break;
                 }
             }
-            if(index == -1){
-                    System.out.println("Sorry Book not available");
-                    return;
+            if (index == -1) {
+                System.out.println("Sorry Book not available");
+                return;
             }
-            for(int i = index; i<this.number_of_book_bank_books-1; i++){
-                this.book_bank_books[i] = this.book_bank_books[i+1];
+            for (int i = index; i < this.number_of_book_bank_books - 1; i++) {
+                this.book_bank_books[i] = this.book_bank_books[i + 1];
             }
-            this.book_bank_books[this.number_of_book_bank_books-1] = null;
+            this.book_bank_books[this.number_of_book_bank_books - 1] = null;
             this.borrowedBooks[this.number_of_books_allocated++] = preference;
             System.out.println("Book successfully allocated");
         }
-        public void returnBook(Person student, Book book){
+
+        public void returnBook(Person student, Book book) {
             boolean found = false;
             int i;
-            int index =0;
-            for(i=0;i<this.borrowedBooks.length;i++){
-                if(this.borrowedBooks[i]==null)
-                break;
-                if(this.borrowedBooks[i].getTitle().equals(book.getTitle())){
-                    found=true;
-                    index=i;
+            int index = 0;
+            for (i = 0; i < this.borrowedBooks.length; i++) {
+                if (this.borrowedBooks[i] == null)
+                    break;
+                if (this.borrowedBooks[i].getTitle().equals(book.getTitle())) {
+                    found = true;
+                    index = i;
                     break;
                 }
             }
-                if(found){
-                    book_bank_books[number_of_book_bank_books++]=borrowedBooks[index];
-                    while(index<this.number_of_books_allocated){
-                        borrowedBooks[index]=borrowedBooks[++index];
-                    }
-                    number_of_books_allocated--;
+            if (found) {
+                book_bank_books[number_of_book_bank_books++] = borrowedBooks[index];
+                while (index < this.number_of_books_allocated) {
+                    borrowedBooks[index] = borrowedBooks[++index];
                 }
+                number_of_books_allocated--;
+            }
         }
     }
+
     public void addBook(Book book) {
         if (this.numberOfBooks < MAX_NUMBER_OF_BOOKS)
             this.books[this.numberOfBooks++] = book;
@@ -122,7 +148,7 @@ public class Library {
     }
 
     public void removeBook(Book book) {
-        if ( this.numberOfBooks == 0) {
+        if (this.numberOfBooks == 0) {
             return; // Array is empty or null
         }
 
@@ -164,8 +190,6 @@ public class Library {
     public int getNumberOfStaffMembers() {
         return this.numberOfStaffMembers;
     }
-
-   
 
     public void issueBook(Person borrower, Book preference) {
         if (borrower == null || preference == null)
