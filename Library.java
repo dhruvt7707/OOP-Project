@@ -13,15 +13,14 @@ public class Library {
     private ComputerScienceBook[] computerScienceBooks;
     private FictionBook[] fictionBooks;
     private ElectricalEngineeringBook[] electricalEngineeringBooks;
-    private Person[] Staff;
-    private int numberOfStaffMembers;
+
     public final Integer MAX_NUMBER_OF_STAFF_MEMBERS = 20;
 
     Library() {
         this.numberOfBooks = 0;
         this.books = new Book[MAX_NUMBER_OF_BOOKS];
-        this.Staff = new Person[MAX_NUMBER_OF_STAFF_MEMBERS];
-        this.numberOfStaffMembers = 0;
+       
+        
         this.chemicalEngineeringBooks = new ChemicalEngineeringBook[MAX_NUMBER_OF_BOOKS];
         this.mechanicalEngineeringBooks = new MechanicalEngineeringBook[MAX_NUMBER_OF_BOOKS];
         this.fictionBooks = new FictionBook[MAX_NUMBER_OF_BOOKS];
@@ -37,8 +36,8 @@ public class Library {
     Library(int numberOfBooks, Book[] books, Person[] Staff, Person Librarian, int numberOfStaffMembers) {
         this.numberOfBooks = numberOfBooks;
         this.books = books;
-        this.Staff = Staff;
-        this.numberOfStaffMembers = numberOfStaffMembers;
+    
+
         this.chemicalEngineeringBooks = new ChemicalEngineeringBook[MAX_NUMBER_OF_BOOKS];
         this.mechanicalEngineeringBooks = new MechanicalEngineeringBook[MAX_NUMBER_OF_BOOKS];
         this.fictionBooks = new FictionBook[MAX_NUMBER_OF_BOOKS];
@@ -179,17 +178,13 @@ public class Library {
         return Library_name;
     }
 
-    public Person[] getStaff() {
-        return this.Staff;
-    }
+
 
     public int getNumberOfBooks() {
         return this.numberOfBooks;
     }
 
-    public int getNumberOfStaffMembers() {
-        return this.numberOfStaffMembers;
-    }
+   
 
     public void issueBook(Person borrower, Book preference) {
         if (borrower == null || preference == null)
