@@ -14,7 +14,7 @@ public class Library {
     private FictionBook[] fictionBooks;
     private ElectricalEngineeringBook[] electricalEngineeringBooks;
 
-    public final Integer MAX_NUMBER_OF_STAFF_MEMBERS = 20;
+
 
     Library() {
         this.numberOfBooks = 0;
@@ -33,7 +33,7 @@ public class Library {
         this.numberOfelectricalengineeringBooks = 0;
     }
 
-    Library(int numberOfBooks, Book[] books, Person[] Staff, Person Librarian, int numberOfStaffMembers) {
+    Library(int numberOfBooks, Book[] books) {
         this.numberOfBooks = numberOfBooks;
         this.books = books;
     
@@ -139,13 +139,27 @@ public class Library {
         }
     }
 
-    public void addBook(Book book) {
+    public void setBook(Book book) {
         if (this.numberOfBooks < MAX_NUMBER_OF_BOOKS)
             this.books[this.numberOfBooks++] = book;
         else
             System.out.println("Max book capacity reached");
     }
-
+    public void setBook(Book ... book){
+        if(this.numberOfBooks < MAX_NUMBER_OF_BOOKS){
+            for(int i=0; i<book.length; i++){
+                this.books[this.numberOfBooks++] = book[i];
+            }
+        }
+        else
+        System.out.println("Max book capacity reached");
+    }
+    public void setBook(ChemicalEngineeringBook... chemicalEngineeringBooks){
+        this.chemicalEngineeringBooks = chemicalEngineeringBooks;
+    }
+    public void setBook(ComputerScienceBook... computerScienceBooks){
+        this.computerScienceBooks = computerScienceBooks;
+    }
     public void removeBook(Book book) {
         if (this.numberOfBooks == 0) {
             return; // Array is empty or null
